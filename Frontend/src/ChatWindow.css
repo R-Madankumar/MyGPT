@@ -40,6 +40,23 @@
     margin: 1rem 2rem ;
 }
 
+.loader-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(33, 33, 33, 0.7);
+    z-index: 9999;
+}
+
+.loader-container:empty {
+    display: none;
+}
+
 .chatInput{
     width: 100%;
     display: flex;

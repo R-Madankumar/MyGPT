@@ -5,7 +5,7 @@ import { useContext ,useState,useEffect } from "react";
 import {ScaleLoader} from "react-spinners";
 
 function ChatWindow() {
-  const{prompt,setPrompt,reply,setReply,currentThreadId,prevChats,setPrevChats} = useContext(MyContext);
+  const{prompt,setPrompt,reply,setReply,currentThreadId,setPrevChats} = useContext(MyContext);
   const [loading, setLoading] =useState(false);
   
   const getReply = async () => {
@@ -56,16 +56,18 @@ function ChatWindow() {
         </div>
       </div>
       <Chat></Chat>
-      <div className="loader-container">
-        <ScaleLoader 
-        color="#fff" 
-        loading={loading} 
-        height={35}
-        width={4}
-        radius={2}
-        margin={2}
-      />
-      </div>
+      {loading && (
+        <div className="loader-container">
+          <ScaleLoader 
+            color="#fff"
+            loading={true}
+            height={35}
+            width={4}
+            radius={2}
+            margin={2}
+          />
+        </div>
+      )}
       <div className="chatInput">
             <div className="inputBox">
               <input placeholder="Ask anything" 
