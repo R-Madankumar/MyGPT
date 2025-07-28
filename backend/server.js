@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use("/api", chartRoutes);
-app.use("/api/users", userRoutes);
+app.use("/api", userRoutes);
 
 
 const connectDB = async () => {

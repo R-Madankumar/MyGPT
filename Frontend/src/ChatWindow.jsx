@@ -2,9 +2,11 @@ import "./ChatWindow.css";
 import Chat from "./Chat.jsx";
 import { MyContext } from "./MyContext.jsx";
 import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { ScaleLoader } from "react-spinners";
 
 function ChatWindow() {
+  const navigate = useNavigate();
   const {
     prompt,
     setPrompt,
@@ -77,7 +79,12 @@ function ChatWindow() {
         <div className="dropDown">
           <div className="dropDownItem"><i className="fa-solid fa-gear"></i> Settings</div>
           <div className="dropDownItem"><i className="fa-solid fa-cloud-arrow-up"></i> Upgrade Plan</div>
-          <div className="dropDownItem"><i className="fa-solid fa-arrow-right-from-bracket"></i> Log out</div>
+          <div className="dropDownItem" onClick={() => navigate('/login')}><i className="fa-solid fa-arrow-right-from-bracket"></i> Login</div>
+          <div className="dropDownItem" onClick={() => navigate('/signup')}><i className="fa-solid fa-user-plus"/> Signup</div>
+          <div className="dropDownItem" onClick={() => {
+            localStorage.removeItem('token');
+            navigate('/login');
+          }}><i className="fa-solid fa-door-open"></i>Log out</div>
         </div>
       )}
     
