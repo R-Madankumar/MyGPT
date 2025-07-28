@@ -12,7 +12,10 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "mongoose": "^8.16.4",
+    "bcrypt": "^6.0.0",
+    "crypto": "^1.0.1",
+    "http-status": "^2.1.0",
+    "mongoose": "^8.16.5",
     "node-fetch": "^3.3.2"
   }
 }

@@ -10,6 +10,11 @@ function Chat() {
     const [latestReply , setLatestReply] = useState(null);
 
     useEffect(()=>{
+
+        if(reply ===null){
+            setLatestReply(null);
+            return;
+        }
         if(!prevChats?.length || !reply) return;
         const content = reply.split(" ");
         let idx = 0;
@@ -31,7 +36,7 @@ function Chat() {
                         <div className={chat.role === "user" ? "userDiv":"gptDiv"} key={idx}>
                             {
                                 chat.role === "user" ?
-                                <p className="userMessage">{chat.content}</p> :
+                                <div className="userMessage">{chat.content}</div>:
                                 <ReactMarkdown rehypePlugins={[rehypeHighlight]}>{chat.content}</ReactMarkdown>
                             }
                         </div>
@@ -39,10 +44,24 @@ function Chat() {
                 }
 
                 {
-                    prevChats?.length > 0 && latestReply !== null &&
-                    <div className="gptDiv" key={"typing"}>
-                        <ReactMarkdown rehypePlugins={[rehypeHighlight]}>{latestReply}</ReactMarkdown>
-                    </div>
+                    prevChats.length > 0 && (
+                        latestReply === null ? (
+                        <div className="gptDiv" key="non-typing">
+                            <ReactMarkdown rehypePlugins={[rehypeHighlight]}>
+                            {prevChats[prevChats.length - 1].content}
+                            </ReactMarkdown>
+                        </div>
+                        ) : (
+                       <div className="gptDiv" key="typing">
+                            <div className="gptMessage">
+                                <ReactMarkdown rehypePlugins={[rehypeHighlight]}>
+                                {latestReply}
+                                </ReactMarkdown>
+                            </div>
+                        </div>
+
+                        )
+                    )
                 }
             </div>
         </div>
